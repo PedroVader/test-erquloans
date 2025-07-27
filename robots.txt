@@ -1,0 +1,14 @@
+User-agent: ia_archiver
+Disallow: /
+User-agent: archive.org_bot
+Disallow: /
+User-agent: ia_archiver-web.archive.org
+Disallow: /
+
+User-agent: *
+Disallow: /TermsOfUse.html
+Disallow: /PrivacyPolicy.html
+Disallow: /Disclaimer.html
+Disallow: /LendingPolicy.html
+Disallow: /RatesAndFees.html
+Disallow: /Definitions.html
