@@ -1,11 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("📦 Script cargado correctamente");
+  
     const form = document.querySelector("form");
-    if (!form) return;
+    if (!form) {
+      console.warn("⚠️ No se encontró el formulario.");
+      return;
+    }
+  
+    console.log("✅ Formulario detectado");
   
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
   
       const fields = form.querySelectorAll("[data-jsf]");
+      if (!fields.length) {
+        console.warn("⚠️ No se encontraron campos con data-jsf.");
+        return;
+      }
+  
+      console.log(`📝 Se encontraron ${fields.length} campos con data-jsf`);
+  
       const payload = {
         lp_campaign_id: "28846",
         lp_supplier_id: "86225",
@@ -14,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
         landing_page_url: window.location.href,
       };
   
-      // Recogida de campos
       fields.forEach((el) => {
         const key = el.getAttribute("data-jsf");
         if (!key) return;
@@ -32,14 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
             value = el.value;
           }
         } else {
-          // Para spans, divs, etc.
           value = el.getAttribute("value") || el.textContent || "";
         }
   
         payload[key] = value.trim();
       });
   
-      // (Opcional) Validaciones mínimas antes de enviar
+      console.log("📤 Payload preparado:", payload);
+  
       if (!payload.phone || !payload.first_name || !payload.date_of_birth) {
         alert("Faltan datos obligatorios (teléfono, nombre o fecha de nacimiento).");
         return;
